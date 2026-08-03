@@ -1,14 +1,18 @@
 server:
   port: ${SERVER_PORT:80}
+  address: 0.0.0.0
 
 spring:
+  main:
+    lazy-initialization: true
   datasource:
     url: jdbc:mysql://${MYSQL_ADDRESS}/${MYSQL_DATABASE:fitness}?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
     username: ${MYSQL_USERNAME}
     password: ${MYSQL_PASSWORD}
   jpa:
+    database-platform: org.hibernate.dialect.MySQL57Dialect
     hibernate:
-      ddl-auto: update
+      ddl-auto: ${DB_DDL_AUTO:none}
 
 app:
   seed-enabled: ${SEED_ENABLED:false}
