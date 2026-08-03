@@ -1,0 +1,11 @@
+.DS_Store
+.idea/
+.vscode/
+frontend/node_modules/
+frontend/dist/
+*.tsbuildinfo
+backend/target/
+backend/data/
+backend/.m2repo/
+.env
+*.log

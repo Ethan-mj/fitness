@@ -1,0 +1,24 @@
+{
+  "containerPort": 80,
+  "minNum": 0,
+  "maxNum": 5,
+  "cpu": 1,
+  "mem": 2,
+  "policyType": "cpu",
+  "policyThreshold": 50,
+  "policyDetails": [
+    { "PolicyType": "cpu", "PolicyThreshold": 50 },
+    { "PolicyType": "mem", "PolicyThreshold": 70 }
+  ],
+  "envParams": {
+    "MYSQL_ADDRESS": "10.16.105.178:3306",
+    "MYSQL_USERNAME": "root",
+    "MYSQL_DATABASE": "fitness",
+    "SEED_ENABLED": "false"
+  },
+  "customLogs": "stdout",
+  "dataBaseName": "fitness",
+  "executeSQLs": [
+    "CREATE DATABASE IF NOT EXISTS fitness DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
+  ]
+}
