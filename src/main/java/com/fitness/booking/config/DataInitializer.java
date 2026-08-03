@@ -17,7 +17,7 @@ public class DataInitializer {
                            @Value("${app.admin.initialize-enabled:true}") boolean initializeAdmin,
                            @Value("${app.seed-enabled:true}") boolean seedEnabled) {
         return args -> {
-            if (initializeAdmin && users.findByNicknameAndRole("admin", AppUser.Role.ADMIN).isEmpty()) {
+            if (initializeAdmin && !users.findByNicknameAndRole("admin", AppUser.Role.ADMIN).isPresent()) {
                 AppUser admin = new AppUser();
                 admin.setNickname("admin"); admin.setRole(AppUser.Role.ADMIN);
                 admin.setPasswordHash(encoder.encode(adminPassword));
@@ -25,7 +25,7 @@ public class DataInitializer {
             }
             if (!seedEnabled || coaches.count() > 0) return;
 
-            if (users.findByNicknameAndRole("林小满", AppUser.Role.USER).isEmpty()) {
+            if (!users.findByNicknameAndRole("林小满", AppUser.Role.USER).isPresent()) {
                 AppUser member = new AppUser();
                 member.setNickname("林小满"); member.setRemainingLessons(8);
                 users.save(member);

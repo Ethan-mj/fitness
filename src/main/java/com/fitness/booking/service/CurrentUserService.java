@@ -11,6 +11,7 @@ public class CurrentUserService {
     public CurrentUserService(AppUserRepository users) { this.users = users; }
     public AppUser get() {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        return users.findById((Long) principal).orElseThrow();
+        return users.findById((Long) principal)
+                .orElseThrow(() -> new IllegalStateException("当前管理员不存在"));
     }
 }
