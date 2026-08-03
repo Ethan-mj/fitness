@@ -1,10 +1,10 @@
 FROM maven:3.6.0-jdk-8-slim AS build
 WORKDIR /app
 
-COPY backend/settings.xml backend/pom.xml ./
+COPY settings.xml pom.xml ./
 RUN mvn -B -s settings.xml dependency:go-offline
 
-COPY backend/src src
+COPY src src
 RUN mvn -B -s settings.xml clean package -DskipTests
 
 FROM alpine:3.13
