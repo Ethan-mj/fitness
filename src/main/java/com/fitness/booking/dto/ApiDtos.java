@@ -68,6 +68,25 @@ public final class ApiDtos {
         public String getAvatarUrl() { return avatarUrl; } public void setAvatarUrl(String avatarUrl) { this.avatarUrl = avatarUrl; }
     }
 
+    public static class CreateMemberJsonRequest {
+        @NotBlank private String nickname;
+        private String phone;
+        @Min(0) @Max(999) private int initialLessons;
+        private String avatarBase64;
+        private String avatarContentType;
+        public CreateMemberJsonRequest() {}
+        public String getNickname() { return nickname; }
+        public void setNickname(String nickname) { this.nickname = nickname; }
+        public String getPhone() { return phone; }
+        public void setPhone(String phone) { this.phone = phone; }
+        public int getInitialLessons() { return initialLessons; }
+        public void setInitialLessons(int initialLessons) { this.initialLessons = initialLessons; }
+        public String getAvatarBase64() { return avatarBase64; }
+        public void setAvatarBase64(String avatarBase64) { this.avatarBase64 = avatarBase64; }
+        public String getAvatarContentType() { return avatarContentType; }
+        public void setAvatarContentType(String avatarContentType) { this.avatarContentType = avatarContentType; }
+    }
+
     public static class CreateSlotRequest {
         @NotNull private Long coachId; @NotNull private LocalDateTime startTime; @NotNull private LocalDateTime endTime;
         public CreateSlotRequest() {}

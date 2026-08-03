@@ -62,6 +62,18 @@ public class AdminController {
     }
 
     @Transactional
+    @PostMapping(value = "/users/json", consumes = "application/json")
+    public UserResponse createUserJson(@Valid @RequestBody CreateMemberJsonRequest request) {
+        AppUser user = new AppUser();
+        user.setNickname(request.getNickname().trim());
+        user.setPhone(request.getPhone() == null || request.getPhone().trim().isEmpty() ? null : request.getPhone().trim());
+        user.setRemainingLessons(request.getInitialLessons());
+        user = users.save(user);
+        user.setAvatarUrl(files.storeAvatar(user, request.getAvatarContentType(), request.getAvatarBase64()));
+        return userResponse(users.save(user));
+    }
+
+    @Transactional
     @PostMapping("/users/{id}/lessons")
     public UserResponse adjustLessons(@PathVariable Long id, @Valid @RequestBody LessonAdjustRequest request) {
         if (request.getAmount() == 0) throw new IllegalArgumentException("调整课时不能为 0");
