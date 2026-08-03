@@ -87,14 +87,14 @@ docker compose logs -f backend
 
 ## 微信云托管部署后端
 
-`backend/` 已按微信云托管 Spring Boot 模板的约定准备，可将这个目录作为云托管服务的代码根目录：
+仓库根目录已按微信云托管 Spring Boot 模板的约定准备。通过 GitHub 仓库发布时，直接选择 `main` 分支和仓库根目录：
 
-- `Dockerfile`：使用腾讯 Maven 镜像构建，生产容器监听 80 端口
-- `settings.xml`：Maven 国内镜像配置
-- `container.config.json`：1 核 2 GB、0–5 实例和 `fitness` 数据库初始化配置
-- `application-cloud.yml`：读取云托管提供的 MySQL 环境变量
+- 根目录 `Dockerfile`：从 `backend/` 构建 Java 服务，生产容器监听 80 端口
+- 根目录 `container.config.json`：1 核 2 GB、0–5 实例和 `fitness` 数据库初始化配置
+- `backend/settings.xml`：Maven 国内镜像配置
+- `backend/src/main/resources/application-cloud.yml`：读取云托管提供的 MySQL 环境变量
 
-在微信云托管新建服务并上传 `backend/` 后，确认服务端口为 `80`，并配置：
+在微信云托管新建服务并关联仓库后，确认服务端口为 `80`，并配置：
 
 ```text
 MYSQL_ADDRESS=10.16.105.178:3306

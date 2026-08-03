@@ -1,0 +1,12 @@
+.git
+.gitignore
+.env
+**/.DS_Store
+**/node_modules
+**/dist
+**/target
+**/.m2repo
+backend/data
+design-system
+deploy
+frontend
