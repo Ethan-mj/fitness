@@ -20,8 +20,8 @@ app:
     app-id: ${WECHAT_APP_ID:wx7eba904112ff9518}
   admin:
     initialize-enabled: ${ADMIN_INITIALIZE_ENABLED:true}
-    initial-password: ${ADMIN_INITIAL_PASSWORD:${random.uuid}}
+    initial-password: ${ADMIN_INITIAL_PASSWORD:Fit@2026}
     wechat-openids: ${ADMIN_WECHAT_OPENIDS:}
-    password-login-enabled: ${ADMIN_PASSWORD_LOGIN_ENABLED:false}
+    password-login-enabled: ${ADMIN_PASSWORD_LOGIN_ENABLED:true}
   cors:
     allowed-origin: ${CORS_ALLOWED_ORIGIN:*}
