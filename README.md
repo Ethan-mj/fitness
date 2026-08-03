@@ -36,6 +36,7 @@ MYSQL_USERNAME=root
 MYSQL_PASSWORD=数据库密码
 MYSQL_DATABASE=fitness
 ADMIN_INITIAL_PASSWORD=首次初始化管理员时使用的强密码
+ADMIN_RESET_PASSWORD=仅需重置已有管理员密码时临时填写
 ADMIN_PASSWORD_LOGIN_ENABLED=true
 JWT_SECRET=至少32位随机字符串
 CORS_ALLOWED_ORIGIN=Web前端的HTTPS域名
@@ -43,7 +44,7 @@ SPRING_PROFILES_ACTIVE=cloud
 SEED_ENABLED=false
 ```
 
-数据库密码、管理员密码和 JWT 密钥建议配置在云托管控制台，不要写入代码仓库。会员端不需要登录；管理员通过 Web 后台账号密码登录。`ADMIN_INITIAL_PASSWORD` 只在数据库中尚无管理员时用于初始化，已有管理员不会自动重置密码。
+数据库密码、管理员密码和 JWT 密钥建议配置在云托管控制台，不要写入代码仓库。会员端不需要登录；管理员通过 Web 后台账号密码登录。`ADMIN_INITIAL_PASSWORD` 只在数据库中尚无管理员时用于初始化。如果旧环境已经存在管理员但不知道密码，可临时设置 `ADMIN_RESET_PASSWORD`，部署并成功登录后删除该环境变量。
 
 首次启动需要初始化 Spring 和数据库连接，请在云托管服务设置中将健康检查初始延迟设置为 `60` 秒。`container.config.json` 只负责模板首次部署，服务创建后的健康检查配置以控制台为准。
 

@@ -14,14 +14,16 @@ public class DataInitializer {
     CommandLineRunner seed(AppUserRepository users, CoachRepository coaches, CoachSlotRepository slots,
                            PasswordEncoder encoder,
                            @Value("${app.admin.initial-password:Fit@2026}") String adminPassword,
+                           @Value("${app.admin.reset-password:}") String resetAdminPassword,
                            @Value("${app.admin.initialize-enabled:true}") boolean initializeAdmin,
                            @Value("${app.seed-enabled:true}") boolean seedEnabled) {
         return args -> {
-            if (initializeAdmin && !users.findByNicknameAndRole("admin", AppUser.Role.ADMIN).isPresent()) {
-                AppUser admin = new AppUser();
-                admin.setNickname("admin"); admin.setRole(AppUser.Role.ADMIN);
-                admin.setPasswordHash(encoder.encode(adminPassword));
-                users.save(admin);
+            AppUser admin = users.findByNicknameAndRole("admin", AppUser.Role.ADMIN).orElse(null);
+            if (initializeAdmin && admin == null) {
+                admin = new AppUser(); admin.setNickname("admin"); admin.setRole(AppUser.Role.ADMIN);
+                admin.setPasswordHash(encoder.encode(adminPassword)); users.save(admin);
+            } else if (admin != null && resetAdminPassword != null && !resetAdminPassword.trim().isEmpty()) {
+                admin.setPasswordHash(encoder.encode(resetAdminPassword.trim())); users.save(admin);
             }
             if (!seedEnabled || coaches.count() > 0) return;
 
