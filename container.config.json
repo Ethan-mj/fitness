@@ -14,6 +14,8 @@
     "MYSQL_ADDRESS": "10.16.105.178:3306",
     "MYSQL_USERNAME": "root",
     "MYSQL_DATABASE": "fitness",
+    "WECHAT_APP_ID": "wx7eba904112ff9518",
+    "ADMIN_PASSWORD_LOGIN_ENABLED": "false",
     "SEED_ENABLED": "false"
   },
   "customLogs": "stdout",

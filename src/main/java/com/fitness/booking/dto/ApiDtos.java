@@ -23,6 +23,16 @@ public final class ApiDtos {
         public Long getUserId() { return userId; } public String getNickname() { return nickname; }
     }
 
+    public static class WechatIdentityResponse {
+        private final String openId;
+        private final boolean administrator;
+        public WechatIdentityResponse(String openId, boolean administrator) {
+            this.openId = openId; this.administrator = administrator;
+        }
+        public String getOpenId() { return openId; }
+        public boolean isAdministrator() { return administrator; }
+    }
+
     public static class CoachResponse {
         private final Long id; private final String name; private final String specialty; private final String introduction; private final String avatarUrl; private final boolean active;
         public CoachResponse(Long id, String name, String specialty, String introduction, String avatarUrl, boolean active) { this.id = id; this.name = name; this.specialty = specialty; this.introduction = introduction; this.avatarUrl = avatarUrl; this.active = active; }

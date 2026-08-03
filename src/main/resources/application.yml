@@ -21,8 +21,12 @@ spring:
     time-zone: Asia/Shanghai
 app:
   seed-enabled: ${SEED_ENABLED:true}
+  wechat:
+    app-id: ${WECHAT_APP_ID:}
   admin:
     initial-password: ${ADMIN_INITIAL_PASSWORD:Fit@2026}
+    wechat-openids: ${ADMIN_WECHAT_OPENIDS:}
+    password-login-enabled: ${ADMIN_PASSWORD_LOGIN_ENABLED:true}
   jwt:
     secret: ${JWT_SECRET:replace-this-with-at-least-32-characters-before-production}
     expiration: 7d
